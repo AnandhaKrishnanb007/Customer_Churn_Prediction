@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Churn Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #cae2fa; /* Light gray background */
+        }
+        .container {
+            background-color: #ffffff; /* White background for the form */
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        .form-control {
+            border-radius: 4px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transition: background-color 0.3s;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            transition: background-color 0.3s;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4" style="color:#007bff;">Churn Prediction</h1>
+
+
+        <form action="/predict" method="post" style="margin: 0 auto;">
+
+            <!-- Row 1 -->
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="PreferredLoginDevice">Preferred Login Device:</label>
+                    <select class="form-control" id="PreferredLoginDevice" name="PreferredLoginDevice" required>
+                        <option value="0">Mobile Phone</option>
+                        <option value="1">Phone</option>
+                        <option value="2">Computer</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="CityTier">City Tier:</label>
+                    <select class="form-control" id="CityTier" name="CityTier" required>
+                        <option value="3">Tier 3</option>
+                        <option value="1">Tier 1</option>
+                        <option value="2">Tier 2</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="WarehouseToHome">Warehouse To Home:</label>
+                    <input type="number" class="form-control" id="WarehouseToHome" name="WarehouseToHome" required>
+                </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="PreferredPaymentMode">Preferred Payment Mode:</label>
+                    <select class="form-control" id="PreferredPaymentMode" name="PreferredPaymentMode" required>
+                        <option value="0">Debit Card</option>
+                        <option value="1">UPI</option>
+                        <option value="2">CC</option>
+                        <option value="3">Cash on Delivery</option>
+                        <option value="4">E wallet</option>
+                        <option value="5">COD</option>
+                        <option value="6">Credit Card</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="Gender">Gender:</label>
+                    <select class="form-control" id="Gender" name="Gender" required>
+                        <option value="0">Female</option>
+                        <option value="1">Male</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="NumberOfDeviceRegistered">Number of Devices Registered:</label>
+                    <input type="number" class="form-control" id="NumberOfDeviceRegistered" name="NumberOfDeviceRegistered" required>
+                </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="PreferedOrderCat">Preferred Order Category:</label>
+                    <select class="form-control" id="PreferedOrderCat" name="PreferedOrderCat" required>
+                        <option value="0">Laptop & Accessory</option>
+                        <option value="1">Mobile</option>
+                        <option value="2">Mobile Phone</option>
+                        <option value="3">Others</option>
+                        <option value="4">Fashion</option>
+                        <option value="5">Grocery</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="SatisfactionScore">Satisfaction Score:</label>
+                    <input type="number" class="form-control" id="SatisfactionScore" name="SatisfactionScore" required>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="MaritalStatus">Marital Status:</label>
+                    <select class="form-control" id="MaritalStatus" name="MaritalStatus" required>
+                        <option value="0">Single</option>
+                        <option value="1">Divorced</option>
+                        <option value="2">Married</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="NumberOfAddress">Number of Addresses:</label>
+                    <input type="number" class="form-control" id="NumberOfAddress" name="NumberOfAddress" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="Complain">Complain:</label>
+                    <input type="number" class="form-control" id="Complain" name="Complain" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="CouponUsed">Coupon Used:</label>
+                    <input type="number" class="form-control" id="CouponUsed" name="CouponUsed" required>
+                </div>
+            </div>
+
+            <!-- Row 5 -->
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="OrderCount">Order Count:</label>
+                    <input type="number" class="form-control" id="OrderCount" name="OrderCount" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="DaySinceLastOrder">Days Since Last Order:</label>
+                    <input type="number" class="form-control" id="DaySinceLastOrder" name="DaySinceLastOrder" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="CashbackAmount">Cashback Amount:</label>
+                    <input type="number" class="form-control" id="CashbackAmount" name="CashbackAmount" step="0.01" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Predict</button>
+        </form>
+
+        <!-- Prediction Result Section -->
+        {% if prediction is not none %}
+        <div class="mt-4" style="width: 60%; margin: 0 auto;">
+            <h2 class="text-center">Prediction Result</h2>
+            {% if prediction == 0 %}
+    <p><strong>Prediction:</strong> No Churn</p>
+{% elif prediction == 1  %}
+    <p><strong>Prediction:</strong> Churn</p>
+            {% else %}
+    <p><strong>Prediction:</strong> </p>
+{% endif %}
+
+            <!-- <p><strong>Probability:</strong> {{ probability }}</p> -->
+<!--            <a href="/index" class="btn btn-secondary btn-block">Make another prediction</a>-->
+        </div>
+        {% endif %}
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -7,7 +7,7 @@ User Interface: A form where users can input data such as Preferred Login Device
 Prediction: The application predicts customer churn based on the input data.
 Result Display: The prediction result is displayed on the same page after submission.
 Technologies Used
-Flask: A lightweight WSGI web application framework in Python.
+Flask: A lightweight web application framework in Python.
 Bootstrap: A front-end framework for building responsive and mobile-first websites.
 scikit-learn: A machine learning library for Python, used for the decision tree model.
 NumPy: A library for numerical computations in Python.
